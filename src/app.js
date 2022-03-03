@@ -17,19 +17,25 @@ app.get('/', (req, res) => res.send('Olá mundo!'))
 app.get('/foods', foodsController.listAll);
 
 //Crie a rota para listar uma determinada comida pelo id 
+app.get('/foods/:id', foodsController.findById);
 
 //Crie a rota para listar uma determinada comida pelo nome 
+app.get('/foods/name/:foodName', foodsController.findByName);
 
-//Crie a rota para listar uma ou mais comida pelo tipo (entrada, prato principal, sobremesa)
+//Crie a rota para listar uma ou mais comidas pelo tipo (entrada, prato principal, sobremesa)
+app.get('/foods/type/:foodType', foodsController.findByType);
 
 /* ROTAS PARA CADASTRO */
 //Crie uma rota para cadastrar uma nova comida 
+app.post('/foods', foodsController.createNewFood);
 
 /* ROTAS PARA ATUALIZACAO */
 //Crie uma rota para atualizar uma determinada comida
+app.put('/foods/:id', foodsController.updateFoodById);
 
 /* ROTAS PARA DELECAO */
 //Crie uma rota para deletar uma determinada comida
+app.delete('/foods/:id', foodsController.removeFoodById);
 
 
 app.listen(PORT, () => console.log(`server running on port: ${PORT}`));
