@@ -6,11 +6,15 @@ const sessionController = require('./controllers/sessionController');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 
+var cors = require('cors')
+
 const PORT = 3000;
 
 //nao podemos esquecer de setar o middleware para trabalharmos com 
 //json
 app.use(express.json());
+
+app.use(cors());
 
 //nosso famoso hello world
 app.get('/', (req, res) => res.send('Olá mundo!'))
