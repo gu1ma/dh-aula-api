@@ -1,0 +1,37 @@
+<html>
+
+
+    <body>
+       
+            <input id="name" name="user" value=""/>
+            <input id="pass" name="pass" type="password" value=""/>
+            <button id="button" type="submit">Enviar</button>
+       
+    </body>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        var button = document.getElementById('button');
+        var username = document.getElementById('name');
+        var pass = document.getElementById('pass');
+
+        button.onclick = () => {
+            const resp = singIn();
+            console.log('resp', resp);
+        }
+
+        async function singIn() {
+            try {
+                const resp = await axios.post('localhost:3000/sign-in', {
+                    name: username.value,
+                    pass: pass.value
+                });
+                return resp;
+            } catch(e) {
+                console.log('e', e.message);
+                return e;
+            }
+        }
+    </script>
+</html>
