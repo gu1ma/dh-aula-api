@@ -14,10 +14,14 @@ const PORT = 3000;
 //json
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+  origin: '*'
+}));
 
 //nosso famoso hello world
 app.get('/', (req, res) => res.send('Olá mundo!'))
+
+app.get('/sign-in', (req, res) => res.sendFile(__dirname + '/views/login.html'))
 
 app.post('/sign-in', sessionController.signIn);
 

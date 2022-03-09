@@ -1,5 +1,8 @@
 <html>
 
+    <head>
+
+    </head>
 
     <body>
        
@@ -9,23 +12,26 @@
        
     </body>
 
-
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         var button = document.getElementById('button');
         var username = document.getElementById('name');
         var pass = document.getElementById('pass');
 
-        button.onclick = () => {
-            const resp = singIn();
-            console.log('resp', resp);
+        button.onclick = async () => {
+            const resp = await singIn();
+            console.log('resp', resp.data.token);
         }
 
         async function singIn() {
             try {
-                const resp = await axios.post('localhost:3000/sign-in', {
-                    name: username.value,
+                const resp = await axios.post('/sign-in', {
+                    user: username.value,
                     pass: pass.value
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
                 });
                 return resp;
             } catch(e) {
