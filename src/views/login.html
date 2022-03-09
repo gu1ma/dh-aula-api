@@ -5,15 +5,30 @@
     </head>
 
     <body>
-       
+        <div>
             <input id="name" name="user" value=""/>
             <input id="pass" name="pass" type="password" value=""/>
             <button id="button" type="submit">Enviar</button>
-       
+
+       </div>
+       <div>
+           <span>
+
+           </span>
+       </div>
     </body>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        /*Exercício FRONT END I 
+          1. Fazer a validação de campo vazio: Se o usuário digitar algum campo vazio, deverá mostrar em tela a seguinte mensagem
+          "O campo de (nome ou senha) deve ser preenchido". A mensagem deverá estar dentro do campo <span><span> e deverá ter a cor vermelha
+          2. Se o após a requisição a api, tivermos um retorno de não autorizado, o texto deverá ser mostrado no campo span, com a cor preta
+          padrão, ex: "usuário ou senha não batem"
+          3. Se o usuário for autenticado com sucesso, deverá mostrar um alert na tela com o texto: "Usuário autenticado com sucesso!"
+            */
+
         var button = document.getElementById('button');
         var username = document.getElementById('name');
         var pass = document.getElementById('pass');
