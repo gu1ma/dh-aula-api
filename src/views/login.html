@@ -24,16 +24,29 @@
         /*Exercício FRONT END I 
           1. Fazer a validação de campo vazio: Se o usuário digitar algum campo vazio, deverá mostrar em tela a seguinte mensagem
           "O campo de (nome ou senha) deve ser preenchido". A mensagem deverá estar dentro do campo <span><span> e deverá ter a cor vermelha
-          2. Se o após a requisição a api, tivermos um retorno de não autorizado, o texto deverá ser mostrado no campo span, com a cor preta
+          2. Se após a requisição a api, tivermos um retorno de não autorizado, o texto deverá ser mostrado no campo span, com a cor preta
           padrão, ex: "usuário ou senha não batem"
-          3. Se o usuário for autenticado com sucesso, deverá mostrar um alert na tela com o texto: "Usuário autenticado com sucesso!"
+          3. Se o usuário for autenticado com sucesso, deverá mostrar um alert na tela com o texto: "Usuário autenticado com sucesso!" OK
             */
 
         var button = document.getElementById('button');
         var username = document.getElementById('name');
         var pass = document.getElementById('pass');
+        const span = document.querySelector('span');
 
         button.onclick = async () => {
+
+            if(username.value === '') {
+                span.style.color = 'red';
+                span.innerText = 'o campo usuário deve ser preenchido';
+                return
+            }
+
+            if(pass.value === '') {
+                span.style.color = 'red';
+                span.innerText = 'o campo senha deve ser preenchido';
+            }
+
             const resp = await singIn();
             console.log('resp', resp.data.token);
         }
@@ -48,9 +61,13 @@
                         'Content-Type': 'application/json',
                     }
                 });
+                alert('Usuário autenticado com sucesso!');
                 return resp;
             } catch(e) {
                 console.log('e', e.message);
+                span = document.querySelector('span');
+                span.innerText = 'usuário ou senha não batem';
+
                 return e;
             }
         }
